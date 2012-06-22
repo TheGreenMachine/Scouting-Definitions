@@ -1,7 +1,7 @@
-package com.edinarobotics.scouting.manager.database.types;
+package com.edinarobotics.scouting.definitions.database.types;
 
 import junit.framework.TestCase;
-import com.edinarobotics.scouting.manager.database.types.Integer;
+import com.edinarobotics.scouting.definitions.database.types.Integer;
 
 public class TestInteger extends TestCase{
 	public Integer int0;

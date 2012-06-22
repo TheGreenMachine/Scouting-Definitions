@@ -1,4 +1,4 @@
-package com.edinarobotics.scouting.manager.database.types;
+package com.edinarobotics.scouting.definitions.database.types;
 
 /**
  * Interface used as the parent for all data types available for

@@ -1,4 +1,4 @@
-package com.edinarobotics.scouting.manager.event;
+package com.edinarobotics.scouting.definitions.event;
 
 /**
  * This class represents events that can be cancelled throughout the scouting system.

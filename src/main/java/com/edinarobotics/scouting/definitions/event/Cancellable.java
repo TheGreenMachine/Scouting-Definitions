@@ -1,4 +1,4 @@
-package com.edinarobotics.scouting.manager.event;
+package com.edinarobotics.scouting.definitions.event;
 
 /**
  * This interface is used in {@link Event} objects that can be cancelled.

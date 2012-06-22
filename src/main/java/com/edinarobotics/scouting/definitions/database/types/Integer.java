@@ -1,4 +1,4 @@
-package com.edinarobotics.scouting.manager.database.types;
+package com.edinarobotics.scouting.definitions.database.types;
 
 /**
  * Defines an integer data type for use in scouting data.

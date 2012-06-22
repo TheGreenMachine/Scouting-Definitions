@@ -1,4 +1,4 @@
-package com.edinarobotics.scouting.manager.event;
+package com.edinarobotics.scouting.definitions.event;
 
 /**
  * These values represent all possible outcomes of a call
