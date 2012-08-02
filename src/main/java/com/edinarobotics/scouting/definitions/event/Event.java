@@ -14,7 +14,17 @@ public abstract class Event {
 	 * Event object.
 	 */
 	public Event(){
-		id = UUID.randomUUID().toString().toLowerCase();
+		this.id = UUID.randomUUID().toString().toLowerCase();
+	}
+	
+	/**
+	 * This constructor handles some default setup tasks for Events.
+	 * It allows manually setting the id for {@link Event} objects.
+	 * Use it carefully and at your own risk.
+	 * @param id The {@link String} id value for this {@link Event} object.
+	 */
+	public Event(String id){
+		this.id = id;
 	}
 	
 	/**
