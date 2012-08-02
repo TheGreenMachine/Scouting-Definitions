@@ -17,16 +17,16 @@ import java.util.concurrent.TimeoutException;
  * event-based computation.
  */
 public abstract class Future<T> implements java.util.concurrent.Future<T>{
-	private final Event event;
+	private final String eventId;
 	
 	/**
 	 * Constructs a new {@link Future} object that is based on the
 	 * computation related to {@code event}.
-	 * @param event The {@link Event} object to which this {@link Future} object
-	 * is linked.
+	 * @param eventId The {@link String} id that any {@link Event} objects
+	 * fired by this action will have.
 	 */
-	public Future(Event event){
-		this.event = event;
+	public Future(String eventId){
+		this.eventId = eventId;
 	}
 	
 	/**
@@ -119,14 +119,14 @@ public abstract class Future<T> implements java.util.concurrent.Future<T>{
 	public abstract Result getResult();
 	
 	/**
-	 * Returns the {@link String} ID value of the {@link Event} to which
+	 * Returns the {@link String} ID value of the {@link Event} objects to which
 	 * this {@link Future} object is linked.
 	 * This value matches the value returned by{@link Event#getId()}.
-	 * @return The ID value of the {@link Event} to which this
+	 * @return The ID value of the {@link Event} objects to which this
 	 * {@link Future} is linked.
 	 * @see Event#getId()
 	 */
 	public String getId(){
-		return event.getId();
+		return this.eventId;
 	}
 }
