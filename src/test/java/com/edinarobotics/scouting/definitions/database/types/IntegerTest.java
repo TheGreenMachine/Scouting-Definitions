@@ -3,14 +3,14 @@ package com.edinarobotics.scouting.definitions.database.types;
 import junit.framework.TestCase;
 import com.edinarobotics.scouting.definitions.database.types.Integer;
 
-public class TestInteger extends TestCase{
+public class IntegerTest extends TestCase{
 	public Integer int0;
 	public Integer int1;
 	public Integer intNeg1;
 	public Integer intLongMax;
 	public Integer intLongMin;
 	
-	public TestInteger(){
+	public IntegerTest(){
 		super("Integer");
 	}
 	
