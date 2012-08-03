@@ -13,7 +13,7 @@ public enum Result {
 	CANCELLED,
 	
 	/**
-	 * This {@link Result} indicates that the call was run but
+	 * This {@link Result} indicates that the call was executed but
 	 * an error occurred while running it. Expect exceptions when
 	 * calling {@link Future#get()}.
 	 * @see Future#get()
