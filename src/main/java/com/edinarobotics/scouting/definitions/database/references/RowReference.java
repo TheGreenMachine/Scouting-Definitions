@@ -17,14 +17,15 @@ public class RowReference {
 	/**
 	 * Create a new {@link RowReference} object from the given row reference {@link String}.
 	 * @param rowRef The row reference {@link String} to parse.
+	 * @throws InvalidReferenceException If {@code tableRef} does not follow the correct format.
 	 */
-	public RowReference(String rowRef){
+	public RowReference(String rowRef) throws InvalidReferenceException{
 		Pattern rowRefPattern = Pattern.compile("^(@?[a-zA-Z0-9]+)#(-?[0-9]+)$");
 		Matcher matcher = rowRefPattern.matcher(rowRef);
 		String tabName = matcher.group(1); //Get the table name
 		String rowName = matcher.group(2); //Get the primary key number
 		if (!TableReference.isValid(matcher, tabName) || !TableReference.isValid(matcher, rowName)){
-			throw new IllegalArgumentException("Bad row reference: "+rowRef);
+			throw new InvalidReferenceException("Bad row reference: "+rowRef);
 		}
 		this.tableRef = new TableReference(tabName);
 		this.rowRef = new Integer(rowName);

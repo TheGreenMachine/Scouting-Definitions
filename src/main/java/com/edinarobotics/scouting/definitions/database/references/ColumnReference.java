@@ -16,14 +16,15 @@ public class ColumnReference {
 	/**
 	 * Create a new {@link ColumnReference} object from the given column reference {@link String}.
 	 * @param columnRef The column reference {@link String} to parse.
+	 * @throws InvalidReferenceException If {@code tableRef} does not follow the correct format.
 	 */
-	public ColumnReference(String columnRef){
+	public ColumnReference(String columnRef) throws InvalidReferenceException{
 		Pattern columnRefPattern = Pattern.compile("^(@?[a-zA-Z0-9]+).([a-zA-Z0-9]+)$");
 		Matcher matcher = columnRefPattern.matcher(columnRef);
 		String tabName = matcher.group(1); //Get the table name
 		String colName = matcher.group(2); //Get the column name
 		if (!TableReference.isValid(matcher, tabName) || !TableReference.isValid(matcher, colName)){
-			throw new IllegalArgumentException("Bad column reference: "+columnRef);
+			throw new InvalidReferenceException("Bad column reference: "+columnRef);
 		}
 		this.tableRef = new TableReference(tabName);
 		this.columnRef = colName;

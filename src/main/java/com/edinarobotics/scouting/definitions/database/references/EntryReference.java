@@ -21,15 +21,16 @@ public class EntryReference {
 	/**
 	 * Create a {@link EntryReference} object from the given entry reference {@link String}.
 	 * @param elementRef The entry reference {@link String} to parse.
+	 * @throws InvalidReferenceException If {@code tableRef} does not follow the correct format.
 	 */
-	public EntryReference(String elementRef){
+	public EntryReference(String elementRef) throws InvalidReferenceException{
 		Pattern elementRefPattern = Pattern.compile("^(@?[a-zA-Z0-9]+).([a-zA-Z0-9]+)#(-?[0-9]+)$");
 		Matcher matcher = elementRefPattern.matcher(elementRef);
 		String tabName = matcher.group(1); //Get the table name
 		String columnName = matcher.group(2); //Get the column name
 		String rowName = matcher.group(3); //Get the primary key number
 		if (!TableReference.isValid(matcher, tabName) || !TableReference.isValid(matcher, columnName) || !TableReference.isValid(matcher, rowName)){
-			throw new IllegalArgumentException("Bad element reference: "+elementRef);
+			throw new InvalidReferenceException("Bad element reference: "+elementRef);
 		}
 		this.tableRef = new TableReference(tabName);
 		this.columnRef = new ColumnReference(tabName+"."+columnName);

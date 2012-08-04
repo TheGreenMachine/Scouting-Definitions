@@ -15,13 +15,14 @@ public class TableReference {
 	/**
 	 * Create a new {@link TableReference} object from the given table reference {@link String}.
 	 * @param tableRef The table reference {@link String} to parse.
+	 * @throws InvalidReferenceException If {@code tableRef} does not follow the correct format.
 	 */
-	public TableReference(String tableRef){
+	public TableReference(String tableRef) throws InvalidReferenceException{
 		Pattern tableRefPattern = Pattern.compile("^(@?[a-zA-Z0-9]+)$");
 		Matcher matcher = tableRefPattern.matcher(tableRef);
 		String tabName = matcher.group(1); //Get the table name
 		if (!isValid(matcher, tabName)){
-			throw new IllegalArgumentException("Bad table reference: "+tableRef);
+			throw new InvalidReferenceException("Bad table reference: "+tableRef);
 		}
 		this.tableRef = tabName;
 	}
