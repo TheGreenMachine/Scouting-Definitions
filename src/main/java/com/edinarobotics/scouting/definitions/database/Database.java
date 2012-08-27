@@ -65,7 +65,7 @@ public interface Database {
 	 * @return A {@link Future} object containing the result of the query
 	 * (if the query succeeds).
 	 */
-	public abstract Future<RowSet> executeQuery(Query query);
+	public Future<RowSet> executeQuery(Query query);
 	
 	/**
 	 * This method is used to execute a {@link Transaction} on the Database.
@@ -82,5 +82,5 @@ public interface Database {
 	 * of the transaction. The Future object always contains a {@code null}
 	 * result value.
 	 */
-	public abstract Future<?> executeTransaction(Transaction transaction);
+	public Future<?> executeTransaction(Transaction transaction);
 }
