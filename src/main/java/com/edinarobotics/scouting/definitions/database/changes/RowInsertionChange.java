@@ -133,9 +133,10 @@ public final class RowInsertionChange implements Change{
 	/**
 	 * Returns the {@link TableReference} object referencing the table into which
 	 * the new row is to be inserted.
-	 * @return
+	 * @return The TableReference of the table into which the new row is to be
+	 * inserted.
 	 */
-	public TableReference getTargetTable(){
+	public TableReference getTargetTableReference(){
 		return ((ColumnReference) getValues().keySet().toArray()[0]).getTableReference();
 	}
 	
@@ -145,7 +146,7 @@ public final class RowInsertionChange implements Change{
 	 * to be inserted.
 	 */
 	public String getTargetTableName(){
-		return getTargetTable().getTableName();
+		return getTargetTableReference().getTableName();
 	}
 	
 	/**

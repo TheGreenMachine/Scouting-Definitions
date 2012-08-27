@@ -3,6 +3,7 @@ package com.edinarobotics.scouting.definitions.database.changes;
 import com.edinarobotics.scouting.definitions.database.Column;
 import com.edinarobotics.scouting.definitions.database.references.ColumnReference;
 import com.edinarobotics.scouting.definitions.database.references.InvalidReferenceException;
+import com.edinarobotics.scouting.definitions.database.references.TableReference;
 import com.edinarobotics.scouting.definitions.database.types.Data;
 
 /**
@@ -91,6 +92,26 @@ public final class ColumnInsertionChange implements Change{
 	 */
 	public String getNewColumnName(){
 		return getNewColumn().getColumnName();
+	}
+	
+	/**
+	 * Returns the {@link TableReference} of the table into which
+	 * the new {@link Column} is to be inserted.
+	 * @return The TableReference of the table into which the
+	 * new Column is to be inserted.
+	 */
+	public TableReference getTargetTableReference(){
+		return getNewColumnReference().getTableReference();
+	}
+	
+	/**
+	 * Returns the name of the table into which the new {@link Column}
+	 * is to be inserted.
+	 * @return The {@code String} name of the table into which the new
+	 * Column is to be inserted.
+	 */
+	public String getTargetTableName(){
+		return getTargetTableReference().getTableName();
 	}
 	
 	/**

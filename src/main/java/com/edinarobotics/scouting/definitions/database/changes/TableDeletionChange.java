@@ -38,7 +38,7 @@ public final class TableDeletionChange implements Change{
 	 * by this TableDeletionChange.
 	 * @return The TableReference of the targeted table.
 	 */
-	public TableReference getTargetTable(){
+	public TableReference getTargetTableReference(){
 		return targetTable;
 	}
 	
@@ -49,7 +49,7 @@ public final class TableDeletionChange implements Change{
 	 * deletion.
 	 */
 	public String getTargetTableName(){
-		return getTargetTable().getTableName();
+		return getTargetTableReference().getTableName();
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public final class TableDeletionChange implements Change{
 	 * this TableDeletionChange.
 	 * An object is equal to this one if it is also a
 	 * TableDeletionChange and if its
-	 * {@link #getTargetTable()} method returns a
+	 * {@link #getTargetTableReference()} method returns a
 	 * {@link TableReference} that is equal to this
 	 * object's internal TableReference.
 	 * @param obj The object to be tested for equality against this one.
@@ -76,7 +76,7 @@ public final class TableDeletionChange implements Change{
 	 */
 	public boolean equals(Object obj){
 		if(obj instanceof TableDeletionChange){
-			return ((TableDeletionChange) obj).getTargetTable().equals(getTargetTable());
+			return ((TableDeletionChange) obj).getTargetTableReference().equals(getTargetTableReference());
 		}
 		return false;
 	}

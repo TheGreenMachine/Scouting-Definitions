@@ -88,7 +88,7 @@ public final class TableCreationChange implements Change{
 	 * Returns the name of the table that is to be created.
 	 * @return The {@code String} name of the table to be created.
 	 */
-	public String getNewTableName(){
+	public String getTargetTableName(){
 		return newTableRef.getTableName();
 	}
 	
@@ -98,7 +98,7 @@ public final class TableCreationChange implements Change{
 	 * @return The TableReference that the new table will have
 	 * after its creation.
 	 */
-	public TableReference getNewTableReference(){
+	public TableReference getTargetTableReference(){
 		return newTableRef;
 	}
 	
@@ -158,7 +158,7 @@ public final class TableCreationChange implements Change{
 	 * TableCreationChange.
 	 * An {@code Object} is equal to this one if it is also a
 	 * TableCreationChange, if its internal {@link TableReference}
-	 * value (from {@link #getNewTableReference()}) is equal
+	 * value (from {@link #getTargetTableReference()}) is equal
 	 * to that of this object and if its {@link Set} of new
 	 * {@link Column} objects (from {@link #getNewColumns()})
 	 * is equal to that of this TableCreationChange.
@@ -169,7 +169,7 @@ public final class TableCreationChange implements Change{
 	public boolean equals(Object obj){
 		if(obj instanceof TableCreationChange){
 			TableCreationChange tCChange = (TableCreationChange) obj;
-			return tCChange.getNewTableReference().equals(getNewTableReference()) && tCChange.getNewColumns().equals(getNewColumns());
+			return tCChange.getTargetTableReference().equals(getTargetTableReference()) && tCChange.getNewColumns().equals(getNewColumns());
 		}
 		return false;
 	}
