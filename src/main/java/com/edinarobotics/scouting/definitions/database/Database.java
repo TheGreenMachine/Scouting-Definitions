@@ -52,7 +52,7 @@ import com.edinarobotics.scouting.definitions.event.Future;
 public interface Database {
 	
 	/**
-	 * This method is used to launch a {@link Query} on this Database.
+	 * Launches a {@link Query} on this Database.
 	 * <br/>
 	 * Queries are executed in the order they are received by the database
 	 * (see the information on the ACID principles in {@link Database}).
@@ -69,7 +69,7 @@ public interface Database {
 	public Future<RowSet> executeQuery(Query query);
 	
 	/**
-	 * This method is used to execute a {@link Transaction} on the Database.
+	 * Executes a {@link Transaction} on this Database.
 	 * <br/>
 	 * Transactions are executed in the order they are received by the database
 	 * (see the information on the ACID principles in {@link Database}).
