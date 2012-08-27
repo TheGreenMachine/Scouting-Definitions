@@ -1,5 +1,6 @@
 package com.edinarobotics.scouting.definitions.database;
 
+import java.util.Map;
 import com.edinarobotics.scouting.definitions.database.changes.Transaction;
 import com.edinarobotics.scouting.definitions.database.queries.Query;
 import com.edinarobotics.scouting.definitions.event.Future;
@@ -83,4 +84,20 @@ public interface Database {
 	 * result value.
 	 */
 	public Future<?> executeTransaction(Transaction transaction);
+	
+	/**
+	 * Returns the key-value storage {@link Map} with name {@code name} (case-sensitive).
+	 * If no key-value store with name {@code name} exists, one is created.<br/>
+	 * This method is designed to be used by plugins as configuration storage.
+	 * It is <em>not</em> to be used to store scouting data.<br/>
+	 * Note that this storage method is <em>not</em> thread-safe and provides
+	 * very few features.<br/>
+	 * All data entered into the returned Map is automatically stored by the Database
+	 * implementation.<br/>
+	 * Databases may discard empty key-value stores when they are closed but must create
+	 * any requested key-value storage maps.
+	 * @param name The name of the requested key-value store (case-sensitive).
+	 * @return A Map representing the key-value store named {@code name}.
+	 */
+	public Map<String, String> getKeyValueStore(String name);
 }
