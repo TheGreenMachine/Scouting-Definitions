@@ -3,7 +3,9 @@ package com.edinarobotics.scouting.definitions.database;
 import java.util.Map;
 import com.edinarobotics.scouting.definitions.database.changes.Transaction;
 import com.edinarobotics.scouting.definitions.database.queries.Query;
+import com.edinarobotics.scouting.definitions.event.EventRegistrar;
 import com.edinarobotics.scouting.definitions.event.Future;
+import com.edinarobotics.scouting.definitions.event.Listener;
 
 /**
  * This class provides access to various
@@ -49,7 +51,7 @@ import com.edinarobotics.scouting.definitions.event.Future;
  * be retrieved by sampling a {@link Row} from a table and consulting its
  * {@link Column} objects' types.
  */
-public interface Database {
+public interface Database extends EventRegistrar{
 	
 	/**
 	 * Launches a {@link Query} on this Database.
@@ -100,4 +102,17 @@ public interface Database {
 	 * @return A Map representing the key-value store named {@code name}.
 	 */
 	public Map<String, String> getKeyValueStore(String name);
+	
+	/**
+	 * This event registers all {@link com.edinarobotics.scouting.definitions.event.EventListener EventListener}
+	 * methods in a {@link Listener} that receive events fired by this Database implementation.
+	 * These events are defined in the {@link com.edinarobotics.scouting.definitions.database.events events}
+	 * package.
+	 * These events typically relate to {@link #executeTransaction(Transaction)} objects and changes
+	 * to the contents of the Database.
+	 * <br/><br/>
+	 * <em><b>Caution:</b></em> do not register a single Listener with multiple Database implementations.
+	 * Multiple event listener registrations can lead to confusion and cause bugs.
+	 */
+	public void registerEvents(Listener listener);
 }
