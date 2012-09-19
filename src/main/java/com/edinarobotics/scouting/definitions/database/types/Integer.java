@@ -3,15 +3,15 @@ package com.edinarobotics.scouting.definitions.database.types;
 /**
  * Defines an integer data type for use in scouting data.
  * This data can store any integer value that can be stored
- * in a java primitive {@code long} value.
+ * in a Java primitive {@code long} value.
  * Many of its methods are implemented similarly to
  * the methods in {@link java.lang.Long}.<br/>
- * Serializing this class using java's built-in serialization
+ * Serializing this class using Java's built-in serialization
  * ({@link java.io.Serializable}) is <em>not</em> recommended.
  * @see java.lang.Long
  */
 @SuppressWarnings("serial")
-public class Integer extends Number implements Data, Comparable<Integer> {
+public class Integer extends Real implements Data{
 	private long value;
 	
 	/**
@@ -20,6 +20,7 @@ public class Integer extends Number implements Data, Comparable<Integer> {
 	 * @param value The value to store in this object.
 	 */
 	public Integer(long value){
+		super(value);
 		this.value = value;
 	}
 	
@@ -34,12 +35,22 @@ public class Integer extends Number implements Data, Comparable<Integer> {
 	
 	/**
 	 * Constructs a new {@link Integer} object representing the
+	 * given {@code double} value. The type conversion is performed
+	 * with casting.
+	 * @param value The value to store in this object.
+	 */
+	public Integer(double value){
+		this((long)value);
+	}
+	
+	/**
+	 * Constructs a new {@link Integer} object representing the
 	 * {@code long} value indicated by the given {@link String}.
 	 * @param s The {@link String} representing the value to store in this object.
 	 * @see Long#Long(String)
 	 */
 	public Integer(String s){
-		this(new Long(s).longValue());
+		this(new Long(s));
 	}
 	
 	/**
@@ -51,16 +62,34 @@ public class Integer extends Number implements Data, Comparable<Integer> {
 		return this.value;
 	}
 	
+	/**
+	 * Returns the {@code long} value stored in this object as an
+	 * {@code int}. The conversion is performed by casting.
+	 * @return An {@code int} representation of the {@code double}
+	 * value stored in this object.
+	 */
 	@Override
 	public int intValue(){
 		return (int)longValue();
 	}
 	
+	/**
+	 * Returns the {@code long} value stored in this object as an
+	 * {@code float}. The conversion is performed by casting.
+	 * @return A {@code float} representation of the {@code double}
+	 * value stored in this object.
+	 */
 	@Override
 	public float floatValue(){
 		return (float)longValue();
 	}
 	
+	/**
+	 * Returns the {@code long} value stored in this object as an
+	 * {@code double}. The conversion is performed by casting.
+	 * @return A {@code double} representation of the {@code double}
+	 * value stored in this object.
+	 */
 	@Override
 	public double doubleValue(){
 		return (double)longValue();
@@ -69,12 +98,14 @@ public class Integer extends Number implements Data, Comparable<Integer> {
 	/**
 	 * Compares this object to another object. The result is
 	 * {@code true} if and only if the argument {@code obj}
-	 * is also an {@link Integer} object that contains the
-	 * same {@code long} value as this object.
+	 * is also a {@link Real} or {@link Double} object that
+	 * contains the same {@code long} or {@code double}
+	 * value as this object.
 	 * @param obj The object to be compared to this
 	 * {@link Integer} object.
 	 * @return {@code true} if the objects are equal as
 	 * described above, {@code false} otherwise.
+	 * @see Double#equals(Object)
 	 * @see Long#equals(Object)
 	 */
 	@Override
@@ -82,40 +113,10 @@ public class Integer extends Number implements Data, Comparable<Integer> {
 		if(obj instanceof Integer){
 			return ((Integer)obj).longValue() == longValue();
 		}
+		else if(obj instanceof Real){
+			return ((Real)obj).doubleValue() == doubleValue();
+		}
 		return false;
-	}
-	
-	/**
-	 * Returns a hash code value for this object as described
-	 * in {@link Object#hashCode()}. This method uses the
-	 * implementation in {@link Long#hashCode()}.
-	 * @return A hash code value for this object.
-	 * @see Long#hashCode()
-	 * @see Object#hashCode()
-	 */
-	@Override
-	public int hashCode(){
-		return new Long(longValue()).hashCode();
-	}
-	
-	/**
-	 * Implements comparisons between different {@link Integer}
-	 * objects. This method uses the contract of
-	 * {@link Comparable#compareTo(Object)} where the values
-	 * compared are the results of calls to
-	 * {@link #longValue()}.
-	 * @param integer The {@link Integer} object to be
-	 * compared to this one.
-	 * @return The value {@code 0} if this {@link Integer} is
-	 * equal to the argument {@code integer}, a value less than
-	 * {@code 0} if this {@link Integer} is less than the
-	 * argument {@code integer} and a value greater than
-	 * {@code 0} if this {@link Integer} is numerically greater
-	 * than the argument {@code integer}.
-	 * @see Comparable#compareTo(Object)
-	 */
-	public int compareTo(Integer integer){
-		return new Long(longValue()).compareTo(integer.longValue());
 	}
 	
 	/**
