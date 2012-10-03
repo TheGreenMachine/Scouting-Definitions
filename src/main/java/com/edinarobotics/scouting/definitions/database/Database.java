@@ -1,6 +1,7 @@
 package com.edinarobotics.scouting.definitions.database;
 
 import java.util.Map;
+import java.util.Set;
 import com.edinarobotics.scouting.definitions.database.changes.Transaction;
 import com.edinarobotics.scouting.definitions.database.queries.Query;
 import com.edinarobotics.scouting.definitions.event.EventRegistrar;
@@ -100,8 +101,18 @@ public interface Database extends EventRegistrar{
 	 * any requested key-value storage maps.
 	 * @param name The name of the requested key-value store (case-sensitive).
 	 * @return A Map representing the key-value store named {@code name}.
+	 * @see #getKeyValueStoreNames()
 	 */
 	public Map<String, String> getKeyValueStore(String name);
+	
+	/**
+	 * Returns a Set containing the names of all currently defined key-value stores.
+	 * This list is not required to contain the names of empty key-value stores but must
+	 * contain all non-empty stores.
+	 * @return A Set containing the String names of all currently created key-value stores.
+	 * @see #getKeyValueStore(String)
+	 */
+	public Set<String> getKeyValueStoreNames();
 	
 	/**
 	 * This event registers all {@link com.edinarobotics.scouting.definitions.event.EventListener EventListener}
