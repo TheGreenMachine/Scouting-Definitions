@@ -23,7 +23,7 @@ public @interface EventListener {
 	ListenerPriority priority() default ListenerPriority.NORMAL;
 	
 	/**
-	 * If {@code true} this event listener will not recieve cancelled
+	 * If {@code true} this event listener will not receive cancelled
 	 * events. This can be useful if your listener will only cancel an
 	 * event, but never uncancel one.
 	 * @return The state of the {@code ignoreCancelled} flag.
