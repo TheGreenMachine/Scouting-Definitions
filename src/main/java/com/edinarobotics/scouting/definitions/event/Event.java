@@ -14,7 +14,7 @@ public abstract class Event {
 	 * Event object.
 	 */
 	public Event(){
-		this.id = UUID.randomUUID().toString().toLowerCase();
+		this.id = UUID.randomUUID().toString();
 	}
 	
 	/**
