@@ -21,6 +21,18 @@ public abstract class DatabaseChangeEvent extends CancellableEvent{
 	}
 	
 	/**
+	 * Constructs a DatabaseChangeEvent representing the given {@link Change} object and
+	 * having the given String ID value.
+	 * @param change The Change to be stored in this DatabaseChangeEvent.
+	 * @param id The String ID value to be assigned to this event.
+	 * @see CancellableEvent#CancellableEvent(String)
+	 */
+	public DatabaseChangeEvent(Change change, String id){
+		super(id);
+		this.databaseChange = change;
+	}
+	
+	/**
 	 * Allows access to the {@link Change} object stored in the DatabaseChangeEvent.
 	 * @return The Change object stored in this DatabaseChangeEvent.
 	 */

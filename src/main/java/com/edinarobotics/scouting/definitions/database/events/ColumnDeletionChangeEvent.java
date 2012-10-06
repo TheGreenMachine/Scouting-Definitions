@@ -20,8 +20,19 @@ public class ColumnDeletionChangeEvent extends DatabaseChangeEvent{
 	}
 	
 	/**
-	 * Allows access to the {@link ColumnDeletionChange} object stored in the DatabaseChangeEvent.
-	 * @return The ColumnDeletionChange object stored in this DatabaseChangeEvent.
+	 * Constructs a ColumnDeletionChangeEvent representing the given {@link ColumnDeletionChange} object and
+	 * having the given String ID value.
+	 * @param change The ColumnDeletionChange to be stored in this ColumnDeletionChangeEvent.
+	 * @param id The String ID value to be assigned to this event.
+	 * @see CancellableEvent#CancellableEvent(String)
+	 */
+	public ColumnDeletionChangeEvent(ColumnDeletionChange change, String id){
+		super(change, id);
+	}
+	
+	/**
+	 * Allows access to the {@link ColumnDeletionChange} object stored in the ColumnDeletionChangeEvent.
+	 * @return The ColumnDeletionChange object stored in this ColumnDeletionChangeEvent.
 	 */
 	public ColumnDeletionChange getChange(){
 		return (ColumnDeletionChange)super.getChange();

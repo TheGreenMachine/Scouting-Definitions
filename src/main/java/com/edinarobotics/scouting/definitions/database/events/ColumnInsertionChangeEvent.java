@@ -20,6 +20,17 @@ public class ColumnInsertionChangeEvent extends DatabaseChangeEvent{
 	}
 	
 	/**
+	 * Constructs a ColumnInsertionChangeEvent representing the given {@link ColumnInsertionChange} object and
+	 * having the given String ID value.
+	 * @param change The ColumnInsertionChange to be stored in this ColumnInsertionChangeEvent.
+	 * @param id The String ID value to be assigned to this event.
+	 * @see CancellableEvent#CancellableEvent(String)
+	 */
+	public ColumnInsertionChangeEvent(ColumnInsertionChange change, String id){
+		super(change, id);
+	}
+	
+	/**
 	 * Allows access to the {@link ColumnInsertionChange} object stored in this ColumnInsertionChangeEvent.
 	 * @return The ColumnInsertionChange object stored in this ColumnInsertionChangeEvent.
 	 */
