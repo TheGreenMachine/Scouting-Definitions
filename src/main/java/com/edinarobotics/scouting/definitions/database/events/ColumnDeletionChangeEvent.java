@@ -2,6 +2,11 @@ package com.edinarobotics.scouting.definitions.database.events;
 
 import com.edinarobotics.scouting.definitions.database.changes.ColumnDeletionChange;
 
+/**
+ * This event is fired by {@link com.edinarobotics.scouting.definitions.database.Database Database}
+ * implementations whenever a table is modified by a {@link ColumnDeletionChange} object in a
+ * {@link com.edinarobotics.scouting.definitions.database.changes.Transaction Transaction}.
+ */
 public class ColumnDeletionChangeEvent extends DatabaseChangeEvent{
 
 	/**
