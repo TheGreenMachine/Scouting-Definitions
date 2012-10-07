@@ -24,7 +24,7 @@ public class ColumnDeletionChangeEvent extends DatabaseChangeEvent{
 	 * having the given String ID value.
 	 * @param change The ColumnDeletionChange to be stored in this ColumnDeletionChangeEvent.
 	 * @param id The String ID value to be assigned to this event.
-	 * @see CancellableEvent#CancellableEvent(String)
+	 * @see com.edinarobotics.scouting.definitions.event.CancellableEvent#CancellableEvent(String)
 	 */
 	public ColumnDeletionChangeEvent(ColumnDeletionChange change, String id){
 		super(change, id);

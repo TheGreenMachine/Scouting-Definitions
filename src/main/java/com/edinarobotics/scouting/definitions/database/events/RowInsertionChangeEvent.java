@@ -24,7 +24,7 @@ public class RowInsertionChangeEvent extends DatabaseChangeEvent{
 	 * having the given String ID value.
 	 * @param change The RowInsertionChange to be stored in this RowInsertionChangeEvent.
 	 * @param id The String ID value to be assigned to this event.
-	 * @see CancellableEvent#CancellableEvent(String)
+	 * @see com.edinarobotics.scouting.definitions.event.CancellableEvent#CancellableEvent(String)
 	 */
 	public RowInsertionChangeEvent(RowInsertionChange change, String id){
 		super(change, id);
