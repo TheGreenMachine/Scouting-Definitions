@@ -126,4 +126,12 @@ public interface Database extends EventRegistrar{
 	 * Multiple event listener registrations can lead to confusion and cause bugs.
 	 */
 	public void registerEvents(Listener listener);
+	
+	/**
+	 * Unregisters the given {@code listener} from all Database events.
+	 * If the given {@code listener} is not registered, no changes are made.
+	 * @param listener The Listener object to be unregistered from
+	 * Database events.
+	 */
+	public void unregisterListener(Listener listener);
 }
