@@ -20,4 +20,14 @@ public interface EventRegistrar {
 	 * methods are to be registered.
 	 */
 	public void registerEvents(Listener listener);
+	
+	/**
+	 * Unregisters the given {@link Listener} from all {@link Event}
+	 * channels.
+	 * The given {@code listener} (if it is registered) will no longer
+	 * receive events from this EventRegistrar. If the given Listener
+	 * is not registered for this EventRegistrar, no changes will be made.
+	 * @param listener The Listener object to be unregistered.
+	 */
+	public void unregisterListener(Listener listener);
 }
