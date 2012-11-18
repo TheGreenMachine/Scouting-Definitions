@@ -111,6 +111,16 @@ public abstract class Future<T> implements java.util.concurrent.Future<T>{
 	public abstract boolean isCancelled();
 	
 	/**
+	 * Indicates whether this task resulted in an error.
+	 * If this method returns {@code true}, expect
+	 * exceptions when calling {@link #get()}.
+	 * @return {@code true} if the task is finished
+	 * and if it resulted in an error, {@code false}
+	 * otherwise.
+	 */
+	public abstract boolean hasError();
+	
+	/**
 	 * Returns the {@link Result} value representing the result
 	 * of this computation and its event.
 	 * @return The {@link Result} value representing the result
