@@ -16,7 +16,7 @@ public interface EventRegistrar {
 	 * For example registering your Listener with two separate
 	 * Database implementations. Dual registration of EventListener
 	 * methods can cause bugs.
-	 * @param listener The Listener class whose EventListener
+	 * @param listener The Listener object whose EventListener
 	 * methods are to be registered.
 	 */
 	public void registerEvents(Listener listener);
