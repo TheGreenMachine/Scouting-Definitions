@@ -125,6 +125,7 @@ public abstract class Future<T> implements java.util.concurrent.Future<T>{
 	 * of this computation and its event.
 	 * @return The {@link Result} value representing the result
 	 * of the computation as described in the {@link Result} enum.
+	 * If the computation is not finished, returns {@code null}.
 	 */
 	public abstract Result getResult();
 	
