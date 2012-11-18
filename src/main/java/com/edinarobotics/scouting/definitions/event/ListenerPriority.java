@@ -42,15 +42,7 @@ public enum ListenerPriority {
 	 * Listeners with this priority are run last and have final say in the outcome of
 	 * the event.
 	 */
-	HIGHEST(4),
-	
-	/**
-	 * The listener is notified after the event is completed (on success or failure).
-	 * Listeners with this priority have no say in the outcome of the event and
-	 * are used to monitor the outcome of an event.<br/>
-	 * No modifications should be made to events under this priority!
-	 */
-	MONITOR(5);
+	HIGHEST(4);
 	
 	private final int order;
 	
