@@ -115,7 +115,7 @@ public interface Database extends EventRegistrar{
 	public Set<String> getKeyValueStoreNames();
 	
 	/**
-	 * This event registers all {@link com.edinarobotics.scouting.definitions.event.EventListener EventListener}
+	 * This method registers all {@link com.edinarobotics.scouting.definitions.event.EventListener EventListener}
 	 * methods in a {@link Listener} that receive events fired by this Database implementation.
 	 * These events are defined in the {@link com.edinarobotics.scouting.definitions.database.events events}
 	 * package.
@@ -124,6 +124,7 @@ public interface Database extends EventRegistrar{
 	 * <br/><br/>
 	 * <em><b>Caution:</b></em> do not register a single Listener with multiple Database implementations.
 	 * Multiple event listener registrations can lead to confusion and cause bugs.
+	 * @param listener The Listener object to be registered for events.
 	 */
 	public void registerEvents(Listener listener);
 	
