@@ -56,7 +56,7 @@ public abstract class Future<T> implements java.util.concurrent.Future<T>{
 	 */
 	public T get(long timeout, TimeUnit unit) throws TimeoutException, ExecutionException, InterruptedException, CancellationException{
 		//Create new ExecutorService to run our timeout enabled call
-		ExecutorService executor = Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newSingleThreadExecutor();
 		
 		//Create a new nested class to perform the function call
 		class GetTask implements Callable<T>{
