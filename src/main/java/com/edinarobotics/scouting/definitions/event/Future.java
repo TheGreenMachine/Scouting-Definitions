@@ -89,7 +89,7 @@ public abstract class Future<T> implements java.util.concurrent.Future<T>{
 	 * If {@code mayInterruptIfRunning} is {@code true} the event will
 	 * be cancelled in the same way as described above, <em>but</em> additional
 	 * attempts may occur if defined by the implementor.
-	 * @param mayInterruptIfRunning chooses the prioirty and type of attempts that
+	 * @param mayInterruptIfRunning chooses the priority and type of attempts that
 	 * may be used to cancel the computation as defined above or in the implementation.
 	 */
 	public abstract boolean cancel(boolean mayInterruptIfRunning);
