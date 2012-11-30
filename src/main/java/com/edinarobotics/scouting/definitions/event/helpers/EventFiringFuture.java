@@ -140,7 +140,7 @@ public class EventFiringFuture extends Future<Event>{
 	 */
 	public boolean isCancelled() {
 		try{
-			if((isDone() && (get() instanceof Cancellable) && ((Cancellable)this.get()).isCancelled()) || topCancel){
+			if(((isDone() && (get() instanceof Cancellable) && ((Cancellable)this.get()).isCancelled())) || topCancel){
 				return true;
 			}
 		}catch(Exception e){
