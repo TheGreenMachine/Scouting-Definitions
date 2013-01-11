@@ -171,7 +171,7 @@ public class Real extends Number implements Data, Comparable<Real>{
 	/**
 	 * Follows the contract of {@link Data#serializeToString()}.
 	 * Gives a {@link String} representation of this object
-	 * suitable to be passed to {@link Real#Integer(String)}.
+	 * suitable to be passed to {@link Real#Real(String)}.
 	 * @return A {@link String} representing the value
 	 * stored in this {@link Real} object.
 	 * In this case it is an alias for {@link Real#toString()}.
