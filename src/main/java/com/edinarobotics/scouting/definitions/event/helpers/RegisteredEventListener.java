@@ -48,7 +48,7 @@ public class RegisteredEventListener {
 		//Get the parameter types of the method
 		Class<?>[] listenerMethodParameters = listenerMethod.getParameterTypes();
 		//Verify that the parameters of the method are valid for an event-handling method
-		if(listenerMethodParameters.length != 1 && Event.class.isAssignableFrom(listenerMethodParameters[0])){
+		if(listenerMethodParameters.length != 1 || !Event.class.isAssignableFrom(listenerMethodParameters[0])){
 			//Parameters are invalid, throw exception
 			throw new IllegalArgumentException("Listener method signature invalid. Does not have a single Event subclass parameter.");
 		}
