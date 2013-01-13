@@ -214,7 +214,8 @@ public class EventFiringFuture extends Future<Event>{
 	 * A value of {@link Result#CANCELLED} indicates that
 	 * the {@link #isCancelled()} method will return {@code true}.<br/>
 	 * A value of {@link Result#ERROR} indicates that the
-	 * {@link #hasError()} method will return {@code true}.<br/>
+	 * {@link #hasError()} method will return {@code true}. The event
+	 * firing process will still have completed successfully.<br/>
 	 * A value of {@link Result#SUCCESS} indicates that the event was not
 	 * cancelled and that the event firing process completed
 	 * without error.<br/>
