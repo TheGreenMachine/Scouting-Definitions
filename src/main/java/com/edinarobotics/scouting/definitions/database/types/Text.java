@@ -5,8 +5,8 @@ package com.edinarobotics.scouting.definitions.database.types;
  * This data can store any string value that can be stored
  * in a Java class {@code String} value.
  * Many of its methods are implemented similarly to
- * the methods in {@link java.lang.Long}.<br/>
- * @see java.lang.Long
+ * the methods in {@link java.lang.String}.<br/>
+ * @see java.lang.String
  */
 public class Text implements Data{
 	private String value;
