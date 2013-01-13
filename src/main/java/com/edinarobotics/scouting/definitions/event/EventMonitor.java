@@ -14,7 +14,9 @@ import java.lang.annotation.Retention;
  * Event monitors receive both the fired Event object and
  * the {@link Result} of the action but have no say in whether
  * or not the event is cancelled. They are notified <em>after</em>
- * the action has finished.
+ * the action has finished.<br/>
+ * Event monitor methods must accept only two parameters: an
+ * Event subclass and a Result value.
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
