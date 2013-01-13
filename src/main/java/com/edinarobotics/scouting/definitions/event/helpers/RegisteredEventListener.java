@@ -2,8 +2,6 @@ package com.edinarobotics.scouting.definitions.event.helpers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.channels.SeekableByteChannel;
-
 import com.edinarobotics.scouting.definitions.event.Cancellable;
 import com.edinarobotics.scouting.definitions.event.Event;
 import com.edinarobotics.scouting.definitions.event.EventListener;
