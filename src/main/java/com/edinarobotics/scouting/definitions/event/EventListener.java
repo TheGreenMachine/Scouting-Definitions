@@ -10,7 +10,8 @@ import java.lang.annotation.Retention;
  * that act as {@link Event} listeners.
  * The type of event to which this method is bound is determined by reflection.
  * It is the responsibility of the event firing class to properly bind
- * these listeners.
+ * these listeners.<br/>
+ * Event listener methods must accept only one parameter: an Event subclass.
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
