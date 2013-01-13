@@ -1,8 +1,11 @@
 package com.edinarobotics.scouting.definitions.event.helpers;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import com.edinarobotics.scouting.definitions.event.Cancellable;
@@ -19,19 +22,46 @@ import com.edinarobotics.scouting.definitions.event.Result;
 public class EventFiringFuture extends Future<Event>{
 	private EventFiringTask eventTask;
 	private boolean topCancel = false;
+	private Set<RegisteredEventMonitor> monitors;
+	private ExecutorService execServ;
 	
 	/**
 	 * Constructs a new EventFiringFuture for an Event
 	 * with the given {@code eventId} and that was
 	 * fired through the given {@link EventFiringTask},
-	 * {@code eventTask}.
+	 * {@code eventTask} and that must notify {@code monitors}.
 	 * @param eventId The String ID of the fired Event.
 	 * @param eventTask The EventFiringTask managing
 	 * the event firing process for the given Event.
+	 * @param monitors The event monitors to be notified
+	 * using {@link #notifyMonitors(Result)}.
+	 * @param execServ The {@link ExecutorService} used
+	 * to manage the event monitor threads when calling
+	 * {@link #notifyMonitors(Result)}.
 	 */
-	public EventFiringFuture(String eventId, EventFiringTask eventTask){
+	public EventFiringFuture(String eventId, EventFiringTask eventTask, Set<RegisteredEventMonitor> monitors, ExecutorService execServ){
 		super(eventId);
 		this.eventTask = eventTask;
+		this.monitors = monitors;
+		this.execServ = execServ;
+	}
+	
+	/**
+	 * Constructs a new EventFiringFuture for an Event
+	 * with the given {@code eventId} and that was
+	 * fired through the given {@link EventFiringTask},
+	 * {@code eventTask} and that must notify {@code monitors}.
+	 * This constructor creates a new single thread
+	 * executor service to be used by {@link #notifyMonitors(Result)}
+	 * @param eventId The String ID of the fired Event.
+	 * @param eventTask The EventFiringTask managing
+	 * the event firing process for the given Event.
+	 * @param monitors The event monitors to be notified
+	 * using {@link #notifyMonitors(Result)}.
+	 * {@link #notifyMonitors(Result)}.
+	 */
+	public EventFiringFuture(String eventId, EventFiringTask eventTask, Set<RegisteredEventMonitor> monitors){
+		this(eventId, eventTask, monitors, Executors.newSingleThreadExecutor());
 	}
 
 	/**
@@ -203,5 +233,48 @@ public class EventFiringFuture extends Future<Event>{
 			return Result.ERROR;
 		}
 		return Result.SUCCESS;
+	}
+	
+	/**
+	 * Notifies event monitors of the outcome of the action described by
+	 * the fired {@link Event}.<br/>
+	 * It is important to note that the {@link Result} object given
+	 * as {@code result} is <em>not</em> necessarily equivalent to the value
+	 * returned by {@link #getResult()}. {@code result} describes the
+	 * outcome of the <em>action</em> while {@link #getResult()}
+	 * describes the outcome of the event firing process. For
+	 * example {@link #getResult()} may return {@link Result#SUCCESS}
+	 * while when the event firing class performs the action an exception
+	 * is thrown, making {@code result} for this method {@link Result#ERROR}.
+	 * However, {@code result} may be the same as {@link #getResult()} if the
+	 * Event was cancelled, either by a plugin or by this EventFiringFuture.
+	 * If this is the case, {@code result} should have a value of
+	 * {@link Result#CANCELLED}.<br/>
+	 * This method uses {@link #get()} to identify the Event
+	 * for this EventFiringFuture. Thus, this method will block
+	 * until {@link #get()} returns and will throw the same
+	 * exceptions as {@link #get()}.<br/>
+	 * This method should only be called <em>once</em>. It does
+	 * not automatically prevent multiple calls.
+	 * @param result The Result representing the outcome of the action
+	 * represented by the event for this EventFiringFuture.
+	 * @return A {@link MonitorNotifyFuture}, that can be used to
+	 * monitor the outcome of the monitor notification process.
+	 * @throws CancellationException If the event firing process
+	 * (not the Event itself) was cancelled.
+	 * @throws ExecutionException If an exception occurred during the
+	 * event firing process and outside of the event handling methods.
+	 * @throws InterruptedException If the current thread was interrupted
+	 * while waiting for the completion of the event firing process.
+	 */
+	public MonitorNotifyFuture notifyMonitors(Result result) throws CancellationException, ExecutionException, InterruptedException{
+		Event event = get();
+		Set<MonitorNotifyTask> tasks = new HashSet<MonitorNotifyTask>();
+		for(RegisteredEventMonitor monitor : monitors){
+			MonitorNotifyTask notifyTask = new MonitorNotifyTask(monitor, event, result);
+			execServ.submit(notifyTask);
+			tasks.add(notifyTask);
+		}
+		return new MonitorNotifyFuture(event.getId(), tasks);
 	}
 }
