@@ -116,6 +116,7 @@ public interface Database extends EventRegistrar{
 	
 	/**
 	 * This method registers all {@link com.edinarobotics.scouting.definitions.event.EventListener EventListener}
+	 * and {@link com.edinarobotics.scouting.definitions.event.EventMonitor EventMonitor}
 	 * methods in a {@link Listener} that receive events fired by this Database implementation.
 	 * These events are defined in the {@link com.edinarobotics.scouting.definitions.database.events events}
 	 * package.
