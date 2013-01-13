@@ -7,8 +7,8 @@ package com.edinarobotics.scouting.definitions.event;
 public interface EventRegistrar {
 	
 	/**
-	 * Registers all {@link EventListener} methods that can
-	 * receive all known {@link Event} types.
+	 * Registers all {@link EventListener} and {@link EventMonitor}
+	 * methods that can receive all known {@link Event} types.
 	 * <br/><br/>
 	 * <em><b>Caution:</b></em> be careful when registering
 	 * a single {@link Listener} class with multiple
@@ -23,7 +23,7 @@ public interface EventRegistrar {
 	
 	/**
 	 * Unregisters the given {@link Listener} from all {@link Event}
-	 * channels.
+	 * handling and monitoring channels.
 	 * The given {@code listener} (if it is registered) will no longer
 	 * receive events from this EventRegistrar. If the given Listener
 	 * is not registered for this EventRegistrar, no changes will be made.
