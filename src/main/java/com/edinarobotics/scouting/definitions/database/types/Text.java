@@ -48,11 +48,12 @@ public class Text implements Data{
 	
 	/**
 	 * Returns a {@link String} object representing this
-	 * {@link Text} object's value. The value is calculated
-	 * using {@link Long#toString()}.
+	 * {@link Text} object's value.
+	 * In this case, this function acts as an alias for the
+	 * {@link Text#getValue()} method.
 	 * @return A {@link String} object representing the
-	 * value of this object in base 10.
-	 * @see Long#toString()
+	 * value of this object.
+	 * @see Text#getValue()
 	 */
 	public String toString()
 	{
